@@ -1,0 +1,17 @@
+[
+    {
+        "member_id": "M101",
+        "name": "Sarah",
+        "email": "sarah.j@gmail.com"
+    },
+    {
+        "member_id": "M102",
+        "name": "Alex",
+        "email": "arivera@gmail.com"
+    },
+    {
+        "member_id": "M103",
+        "name": "Jersh",
+        "email": "jersh.s@gmail.com"
+    }
+]

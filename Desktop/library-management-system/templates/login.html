@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Portal - Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="library-bg min-h-screen flex items-center justify-center font-sans">
+
+    <div class="bg-slate-900/90 border border-slate-700 p-8 rounded-xl shadow-2xl w-full max-w-md backdrop-blur-sm">
+        <h2 class="text-3xl font-bold text-center text-white mb-2">Staff Portal</h2>
+        <p class="text-center text-gray-400 mb-6 text-sm">Log in to manage library inventory</p>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-4 p-3 rounded text-sm text-white {% if category == 'success' %}bg-green-600{% elif category == 'warning' %}bg-yellow-600{% else %}bg-red-600{% endif %}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('login') }}" method="POST" class="space-y-4">
+            <div>
+                <label class="block text-gray-300 text-sm mb-1">Username</label>
+                <input type="text" name="username" placeholder="Enter username (e.g. admin)" required class="w-full bg-slate-800 border border-slate-600 text-white p-2.5 rounded focus:outline-none focus:border-amber-400">
+            </div>
+            <div>
+                <label class="block text-gray-300 text-sm mb-1">Password</label>
+                <input type="password" name="password" placeholder="Enter password (e.g. admin123)" required class="w-full bg-slate-800 border border-slate-600 text-white p-2.5 rounded focus:outline-none focus:border-amber-400">
+            </div>
+            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold py-2.5 rounded transition mt-2">Log In</button>
+        </form>
+
+        <div class="mt-6 text-center">
+            <a href="{{ url_for('home') }}" class="text-sm text-gray-400 hover:text-white transition">← Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

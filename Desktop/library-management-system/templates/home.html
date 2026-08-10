@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Portal - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="library-bg min-h-screen flex flex-col justify-between text-white font-sans">
+
+    <!-- Header Navigation -->
+    <header class="p-6 flex justify-between items-center max-w-6xl mx-auto w-full">
+        <h1 class="text-2xl font-bold tracking-wider text-amber-400">📚 BiblioTech</h1>
+        <a href="{{ url_for('login') }}" class="bg-amber-500 hover:bg-amber-600 text-gray-900 px-5 py-2 rounded-lg font-semibold transition">Login</a>
+    </header>
+
+    <!-- Hero Content -->
+    <main class="text-center px-4 max-w-3xl mx-auto my-auto">
+        <h2 class="text-5xl font-extrabold mb-6 leading-tight">Welcome to the Modern Library System</h2>
+        <p class="text-lg text-gray-300 mb-8">Seamlessly manage books, members, issues, and returns all from one unified digital platform.</p>
+        <a href="{{ url_for('login') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-3 rounded-lg shadow-lg transition">Get Started</a>
+    </main>
+
+    <!-- Footer -->
+    <footer class="p-4 text-center text-gray-400 text-sm">
+        &copy; 2026 Library Management System.
+    </footer>
+
+</body>
+</html>

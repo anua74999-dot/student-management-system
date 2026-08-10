@@ -1,0 +1,50 @@
+[
+    {
+        "book_id": "109876",
+        "title": "Introduction of internet things",
+        "author": "Kevin Ashton",
+        "category": "Technology",
+        "total_copies": 10,
+        "available_copies": 10
+    },
+    {
+        "book_id": "109877",
+        "title": "Designing Data intensive applications",
+        "author": "Martin kleppmann",
+        "category": "Technology",
+        "total_copies": 4,
+        "available_copies": 4
+    },
+    {
+        "book_id": "109878",
+        "title": "Clean Code:A handbook of Agile Software Craftsmanship",
+        "author": "Robert C.Martin",
+        "category": "Programming",
+        "total_copies": 6,
+        "available_copies": 6
+    },
+    {
+        "book_id": "109879",
+        "title": "The Pragmatic Programmer",
+        "author": "Andrew Hunt",
+        "category": "Programming",
+        "total_copies": 5,
+        "available_copies": 5
+    },
+    {
+        "book_id": "109880",
+        "title": "Sapiens",
+        "author": "Yuval Noah",
+        "category": "History",
+        "total_copies": 8,
+        "available_copies": 8
+    },
+    {
+        "book_id": "109881",
+        "title": "Atomic Habits",
+        "author": "James Clear",
+        "category": "Self Help",
+        "total_copies": 10,
+        "available_copies": 10
+    }
+]

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="library-bg min-h-screen font-sans text-gray-100">
+
+    <!-- Top Navigation Bar -->
+    <nav class="bg-slate-900/90 border-b border-slate-700/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl font-bold tracking-wide text-amber-400 flex items-center gap-2">
+                <span>📚</span> Library Management Dashboard
+            </h1>
+            <a href="{{ url_for('logout') }}" class="bg-red-600 hover:bg-red-700 text-white font-medium px-4 py-1.5 rounded-lg text-sm transition shadow-sm">Logout</a>
+        </div>
+    </nav>
+
+    <div class="max-w-6xl mx-auto p-6">
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-6 p-4 rounded-lg text-white font-medium shadow-md border {% if category == 'success' %}bg-emerald-600/90 border-emerald-500{% elif category == 'warning' %}bg-amber-600/90 border-amber-500{% else %}bg-rose-600/90 border-rose-500{% endif %} backdrop-blur-sm">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Operations Forms -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            
+            <!-- Add Book Card -->
+            <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md">
+                <h2 class="text-lg font-bold mb-3 text-amber-400">Add Book</h2>
+                <form action="/add_book" method="POST" class="space-y-3">
+                    <input type="text" name="book_id" placeholder="Book ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="title" placeholder="Title" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="author" placeholder="Author" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="category" placeholder="Category" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="number" name="total_copies" placeholder="Total Copies" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold text-sm transition">Add Book</button>
+                </form>
+            </div>
+
+            <!-- Add Member Card -->
+            <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md">
+                <h2 class="text-lg font-bold mb-3 text-amber-400">Add Member</h2>
+                <form action="/add_member" method="POST" class="space-y-3">
+                    <input type="text" name="member_id" placeholder="Member ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="name" placeholder="Name" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="email" name="email" placeholder="Email" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 rounded-lg font-semibold text-sm transition">Add Member</button>
+                </form>
+            </div>
+
+            <!-- Issue Book Card -->
+            <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md">
+                <h2 class="text-lg font-bold mb-3 text-amber-400">Issue Book</h2>
+                <form action="/issue_book" method="POST" class="space-y-3">
+                    <input type="text" name="member_id" placeholder="Member ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="book_id" placeholder="Book ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-semibold text-sm transition">Issue Book</button>
+                </form>
+            </div>
+
+            <!-- Return Book Card -->
+            <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md">
+                <h2 class="text-lg font-bold mb-3 text-amber-400">Return Book</h2>
+                <form action="/return_book" method="POST" class="space-y-3">
+                    <input type="text" name="member_id" placeholder="Member ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <input type="text" name="book_id" placeholder="Book ID" required class="w-full bg-slate-800/90 border border-slate-600 text-white p-2.5 rounded-lg text-sm focus:outline-none focus:border-amber-400">
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-lg font-semibold text-sm transition">Return Book</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md mb-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+                <h2 class="text-xl font-bold text-amber-400">Book Inventory</h2>
+                <form method="GET" action="/dashboard" class="flex gap-2 w-full sm:w-auto">
+                    <input type="text" name="search" value="{{ query }}" placeholder="Search title, author..." class="bg-slate-800/90 border border-slate-600 text-white p-2 rounded-lg text-sm w-full sm:w-64 focus:outline-none focus:border-amber-400">
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-gray-900 font-bold px-4 py-2 rounded-lg text-sm transition">Search</button>
+                </form>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-800/80 border-b border-slate-700 text-amber-300">
+                            <th class="p-3">ID</th>
+                            <th class="p-3">Title</th>
+                            <th class="p-3">Author</th>
+                            <th class="p-3">Category</th>
+                            <th class="p-3">Available / Total</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        {% for book in books %}
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="p-3 font-mono text-amber-400">{{ book.book_id }}</td>
+                            <td class="p-3 font-medium">{{ book.title }}</td>
+                            <td class="p-3 text-gray-300">{{ book.author }}</td>
+                            <td class="p-3 text-gray-300"><span class="bg-slate-800 px-2.5 py-1 rounded-full text-xs text-amber-200 border border-slate-700">{{ book.category }}</span></td>
+                            <td class="p-3 font-semibold">{{ book.available_copies }} / {{ book.total_copies }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="5" class="p-6 text-center text-gray-400">No books found in the inventory.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Members Table -->
+        <div class="bg-slate-900/85 border border-slate-700/80 p-5 rounded-xl shadow-xl backdrop-blur-md mb-8">
+            <h2 class="text-xl font-bold mb-4 text-amber-400">Registered Members</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-slate-800/80 border-b border-slate-700 text-amber-300">
+                            <th class="p-3">Member ID</th>
+                            <th class="p-3">Name</th>
+                            <th class="p-3">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-800">
+                        {% for member in members %}
+                        <tr class="hover:bg-slate-800/50 transition">
+                            <td class="p-3 font-mono text-amber-400">{{ member.member_id }}</td>
+                            <td class="p-3 font-medium">{{ member.name }}</td>
+                            <td class="p-3 text-gray-300">{{ member.email }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="3" class="p-6 text-center text-gray-400">No members registered yet.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
