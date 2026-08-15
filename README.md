@@ -56,3 +56,4 @@ library-management-system/
 │   └── login.html          # Authentication / login page template
 ├── app.py                  # Main Flask / Python backend entry point
 └── README.md               # Project documentation
+# student-management-system
